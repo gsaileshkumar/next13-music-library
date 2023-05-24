@@ -9,6 +9,9 @@ type ArtistPageProps = {
     artist: string;
   };
 };
+
+export const dynamic = "force-dynamic";
+
 export default async function ArtistPage({ params }: ArtistPageProps) {
   const { artist } = params;
   const topAlbums = await lastFmApi.getTopAlbumsForArtist(

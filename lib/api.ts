@@ -10,8 +10,7 @@ export class LastFMApi {
   getTopArtists = async () => {
     const method = "chart.gettopartists";
     const topArtists = await fetch(
-      `${this.baseUrl}?format=json&api_key=${this.apiKey}&limit=10&method=${method}`,
-      { cache: "no-store" }
+      `${this.baseUrl}?format=json&api_key=${this.apiKey}&limit=10&method=${method}`
     );
     const topArtistsResp = await topArtists.json();
     return {
@@ -24,8 +23,7 @@ export class LastFMApi {
   getTopAlbumsForArtist = async (artist: string) => {
     const method = "artist.gettopalbums";
     const topAlbums = await fetch(
-      `${this.baseUrl}?format=json&api_key=${this.apiKey}&artist=${artist}&method=${method}`,
-      { cache: "no-store" }
+      `${this.baseUrl}?format=json&api_key=${this.apiKey}&artist=${artist}&method=${method}`
     );
     const topAlbumsResp = await topAlbums.json();
     return {
@@ -50,8 +48,7 @@ export class LastFMApi {
   }) => {
     const method = "album.getinfo";
     const albumInfo = await fetch(
-      `${this.baseUrl}?format=json&api_key=${this.apiKey}&artist=${artist}&album=${album}&method=${method}`,
-      { cache: "no-store" }
+      `${this.baseUrl}?format=json&api_key=${this.apiKey}&artist=${artist}&album=${album}&method=${method}`
     );
     const albumInfoResp = await albumInfo.json();
     const tracks = Array.isArray(albumInfoResp?.album?.tracks?.track)

@@ -2,6 +2,8 @@ import lastFmApi from "@/lib/api";
 import { Artist } from "@/lib/types";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export default async function Page() {
   const topArtists = await lastFmApi.getTopArtists();
   return (
