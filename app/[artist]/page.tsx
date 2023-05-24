@@ -19,9 +19,7 @@ export const dynamic = "force-dynamic";
 
 export default async function ArtistPage({ params }: ArtistPageProps) {
   const { artist } = params;
-  const topAlbums = await lastFmApi.getTopAlbumsForArtist(
-    decodeURIComponent(artist)
-  );
+  const topAlbums = await lastFmApi.getTopAlbumsForArtist(artist);
   return (
     <div>
       <h2>{topAlbums.artist}</h2>
@@ -33,11 +31,10 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
           )
           .filter((album: Album) => album.name.indexOf("null") === -1)
           .map((album: Album) => {
-            const albumName = decodeURIComponent(album.name);
             return (
               <li key={album.name}>
                 <Link href={`/${artist}/${album.name}`} prefetch={false}>
-                  {albumName}
+                  {album.name}
                 </Link>
                 <Image
                   src={getImage(album.image)}

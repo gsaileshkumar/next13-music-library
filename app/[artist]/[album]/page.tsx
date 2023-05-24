@@ -22,8 +22,8 @@ export default async function AlbumOverviewPage({
 }: AlbumOverviewPageProps) {
   const { artist, album } = params;
   const albumInfo = await lastFmApi.getAlbumInfo({
-    artist: decodeURIComponent(artist),
-    album: decodeURIComponent(album),
+    artist,
+    album,
   });
   return (
     <div>
