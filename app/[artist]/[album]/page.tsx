@@ -1,5 +1,6 @@
 import lastFmApi from "@/lib/api";
 import { getImage } from "@/lib/helper";
+import { Track } from "@/lib/types";
 import Image from "next/image";
 
 type AlbumOverviewPageProps = {
@@ -12,28 +13,32 @@ type AlbumOverviewPageProps = {
 export default async function AlbumOverviewPage({
   params,
 }: AlbumOverviewPageProps) {
-  console.log("album page params", params);
   const { artist, album } = params;
-  console.log(decodeURIComponent(artist), decodeURIComponent(album));
-  const albumInfoResp = await lastFmApi.album.fetch(
-    decodeURIComponent(artist),
-    decodeURIComponent(album)
-  );
-  const albumName = decodeURIComponent(albumInfoResp.name);
+  const albumInfo = await lastFmApi.getAlbumInfo({
+    artist: decodeURIComponent(artist),
+    album: decodeURIComponent(album),
+  });
   return (
     <div>
+      <h2>{albumInfo.artist}</h2>
+      <h2>{albumInfo.name}</h2>
       <Image
-        src={getImage(albumInfoResp.image)}
-        alt={albumName}
+        src={getImage(albumInfo.image)}
+        alt={albumInfo.name}
         width={200}
         height={100}
       />
-      <p>Tracks:</p>
-      <ul>
-        {albumInfoResp.tracks.map((track) => {
-          return <li key={track.name}>{track.name}</li>;
-        })}
-      </ul>
+      <p>Album Play count: {albumInfo.playCount}</p>
+      {albumInfo.tracks.length ? (
+        <>
+          <p>Tracks:</p>
+          <ul>
+            {albumInfo.tracks.map((track: Track) => {
+              return <li key={track.name}>{track.name}</li>;
+            })}
+          </ul>
+        </>
+      ) : null}
     </div>
   );
 }

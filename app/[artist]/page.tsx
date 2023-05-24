@@ -1,5 +1,6 @@
 import lastFmApi from "@/lib/api";
 import { getImage } from "@/lib/helper";
+import { Album } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,22 +10,21 @@ type ArtistPageProps = {
   };
 };
 export default async function ArtistPage({ params }: ArtistPageProps) {
-  console.log("artists page params", params);
   const { artist } = params;
-  console.log(decodeURIComponent(artist));
-  const topAlbumsResp = await lastFmApi.artist.fetchTopAlbums(
+  const topAlbums = await lastFmApi.getTopAlbumsForArtist(
     decodeURIComponent(artist)
   );
-  const artistName = decodeURIComponent(topAlbumsResp.search.artist.name);
   return (
     <div>
-      <h2>{artistName}</h2>
+      <h2>{topAlbums.artist}</h2>
       <h2>Top Albums</h2>
       <ul>
-        {topAlbumsResp.albums
-          .sort((album1, album2) => album1.name.localeCompare(album2.name))
-          .filter((album) => album.name.indexOf("null") === -1)
-          .map((album) => {
+        {topAlbums.albums
+          .sort((album1: Album, album2: Album) =>
+            album1.name.localeCompare(album2.name)
+          )
+          .filter((album: Album) => album.name.indexOf("null") === -1)
+          .map((album: Album) => {
             const albumName = decodeURIComponent(album.name);
             return (
               <li key={album.name}>
