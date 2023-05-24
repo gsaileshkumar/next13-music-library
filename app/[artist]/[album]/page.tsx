@@ -10,6 +10,11 @@ type AlbumOverviewPageProps = {
   };
 };
 
+export const metadata = {
+  title: "Fun FM - Album Page",
+  description: "Music Library",
+};
+
 export const dynamic = "force-dynamic";
 
 export default async function AlbumOverviewPage({

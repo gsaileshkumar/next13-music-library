@@ -10,6 +10,11 @@ type ArtistPageProps = {
   };
 };
 
+export const metadata = {
+  title: "Fun FM - Artist Page",
+  description: "Music Library",
+};
+
 export const dynamic = "force-dynamic";
 
 export default async function ArtistPage({ params }: ArtistPageProps) {
