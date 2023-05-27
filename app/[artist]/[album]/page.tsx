@@ -26,22 +26,28 @@ export default async function AlbumOverviewPage({
     album,
   });
   return (
-    <div>
-      <h2>{albumInfo.artist}</h2>
-      <h2>{albumInfo.name}</h2>
+    <div className="flex flex-col gap-2">
+      <h2 className="text-xl font-bold text-slate-700">{albumInfo.artist}</h2>
+      <h2 className="text-lg font-bold text-slate-700">{albumInfo.name}</h2>
       <Image
         src={getImage(albumInfo.image)}
         alt={albumInfo.name}
         width={200}
-        height={100}
+        height={200}
       />
-      <p>Album Play count: {albumInfo.playCount}</p>
+      <p className="text-slate-700 font-bold">
+        Album Play count: {albumInfo.playCount}
+      </p>
       {albumInfo.tracks.length ? (
         <>
-          <p>Tracks:</p>
+          <p className="text-slate-700 font-semibold">Tracks:</p>
           <ul>
             {albumInfo.tracks.map((track: Track) => {
-              return <li key={track.name}>{track.name}</li>;
+              return (
+                <li key={track.name} className="text-slate-700 italic">
+                  {track.name}
+                </li>
+              );
             })}
           </ul>
         </>

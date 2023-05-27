@@ -14,8 +14,9 @@ export class LastFMApi {
     );
     const topArtistsResp = await topArtists.json();
     return {
-      artists: topArtistsResp.artists.artist.map(({ name }: any) => {
-        return { name };
+      artists: topArtistsResp.artists.artist.map((artist: any) => {
+        const { name, image } = artist;
+        return { name, image: image[1]["#text"] };
       }),
     };
   };
@@ -62,7 +63,7 @@ export class LastFMApi {
       artist: albumInfoResp.album.artist,
       name: albumInfoResp.album.name,
       playCount: albumInfoResp.album.playcount,
-      image: albumInfoResp.album.image[1]["#text"],
+      image: albumInfoResp.album.image[2]["#text"],
       tracks,
     };
   };
