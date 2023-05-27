@@ -14,9 +14,9 @@ export default function RootLayout({
   return (
     <html>
       <body className=" bg-slate-400 ">
-        <header className="container mx-auto px-5 py-2">
-          <Link href="/">
-            <h1 className="text-3xl font-bold">FunFM Music Library</h1>
+        <header className="flex items-center justify-center h-20 bg-slate-600">
+          <Link href="/" className="text-3xl font-medium text-slate-300">
+            Music Library
           </Link>
         </header>
         <div className="container mx-auto px-5 py-2">

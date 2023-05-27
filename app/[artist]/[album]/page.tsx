@@ -41,10 +41,13 @@ export default async function AlbumOverviewPage({
       {albumInfo.tracks.length ? (
         <>
           <p className="text-slate-700 font-semibold">Tracks:</p>
-          <ul>
+          <ul className="flex flex-wrap">
             {albumInfo.tracks.map((track: Track) => {
               return (
-                <li key={track.name} className="text-slate-700 italic">
+                <li
+                  key={track.name}
+                  className="w-full md:w-1/2 text-slate-700 italic"
+                >
                   {track.name}
                 </li>
               );

@@ -1,7 +1,6 @@
 import lastFmApi from "@/lib/api";
-import { getImage } from "@/lib/helper";
 import { Album } from "@/lib/types";
-import Image from "next/image";
+import Card from "../card";
 import Link from "next/link";
 
 type ArtistPageProps = {
@@ -32,22 +31,15 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
           .filter((album: Album) => album.name.indexOf("null") === -1)
           .map((album: Album) => {
             return (
-              <li key={album.name} className="flex w-1/3 flex-wrap">
-                <Link href={`/${artist}/${album.name}`} prefetch={false}>
-                  <div className="flex gap-2 p-1 md:p-2">
-                    <div className="flex-shrink-0">
-                      <Image
-                        src={getImage(album.image)}
-                        alt={album.name}
-                        width={100}
-                        height={100}
-                        className="rounded-lg object-cover object-center"
-                      />
-                    </div>
-                    <p className="text-lg text-slate-700 text-ellipsis">
-                      {album.name}
-                    </p>
-                  </div>
+              <li
+                key={album.name}
+                className="flex flex-wrap w-full md:w-1/2 lg:w-1/3"
+              >
+                <Link
+                  href={`/${artist}/${album.name.replace("/", " ")}`}
+                  prefetch={false}
+                >
+                  <Card title={album.name} image={album.image} />
                 </Link>
               </li>
             );

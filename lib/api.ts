@@ -16,7 +16,7 @@ export class LastFMApi {
     return {
       artists: topArtistsResp.artists.artist.map((artist: any) => {
         const { name, image } = artist;
-        return { name, image: image[1]["#text"] };
+        return { name, image: image[2]["#text"] };
       }),
     };
   };
@@ -30,11 +30,9 @@ export class LastFMApi {
     return {
       artist: topAlbumsResp["topalbums"]["@attr"]["artist"],
       albums: topAlbumsResp["topalbums"]["album"].map((album: any) => {
-        console.log(album);
-        console.log(album.image[1]["#text"]);
         return {
           name: album.name,
-          image: album.image[1]["#text"],
+          image: album.image[2]["#text"],
         };
       }),
     };
