@@ -57,6 +57,14 @@ export class LastFMApi {
           };
         })
       : [];
+
+    console.log({
+      artist: albumInfoResp.album.artist,
+      name: albumInfoResp.album.name,
+      playCount: albumInfoResp.album.playcount,
+      image: albumInfoResp.album.image[2]["#text"],
+      tracks,
+    });
     return {
       artist: albumInfoResp.album.artist,
       name: albumInfoResp.album.name,

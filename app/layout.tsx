@@ -2,7 +2,7 @@ import Link from "next/link";
 import "./global.css";
 
 export const metadata = {
-  title: "Fun FM",
+  title: "Music Library",
   description: "Music Library",
 };
 
